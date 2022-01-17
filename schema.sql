@@ -14,11 +14,12 @@ CREATE TABLE employees (
 	last_name VARCHAR NOT NULL,
 	gender VARCHAR NOT NULL,
 	hire_date DATE NOT NULL,
-	PRIMARY KEY (emp_no)
+	PRIMARY KEY (emp_no)	
 );
 
-CREATE TABLE dept_manager (
-dept_no VARCHAR(4) NOT NULL,
+--Create another table 
+CREATE TABLE dept_managers (
+	dept_no VARCHAR(4) NOT NULL,
     emp_no INT NOT NULL,
     from_date DATE NOT NULL,
     to_date DATE NOT NULL,
@@ -27,6 +28,7 @@ FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
     PRIMARY KEY (emp_no, dept_no)
 );
 
+--Create another table 
 CREATE TABLE salaries (
   emp_no INT NOT NULL,
   salary INT NOT NULL,
@@ -34,5 +36,28 @@ CREATE TABLE salaries (
   to_date DATE NOT NULL,
   FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
   PRIMARY KEY (emp_no)
+);	
+
+--Create another tables 	
+CREATE TABLE dept_EMP (
+dept_no VARCHAR(4) NOT NULL,
+    emp_no INT NOT NULL,
+    from_date DATE NOT NULL,
+    to_date DATE NOT NULL,
+FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
+FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+    PRIMARY KEY (emp_no, dept_no)
 );
+
+-- Create another table
+CREATE TABLE titles (
+	emp_no INT NOT NULL,
+	title VARCHAR NOT NULL,
+    from_date DATE NOT NULL,
+    to_date DATE NOT NULL,
+	FOREIGN KEY (emp_no) REFERENCES Salaries (emp_no),
+	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+    PRIMARY KEY (title, emp_no, from_date, to_date)
+);
+
 SELECT * FROM DEPARTMENTS;
